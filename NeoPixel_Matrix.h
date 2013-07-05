@@ -1,0 +1,31 @@
+#ifndef NEOPIXEL_MATRIX_H
+#define NEOPIXEL_MATRIX_H
+
+#include <Adafruit_GFX.h>
+#include <Adafruit_NeoPixel.h>
+
+class NeoPixel_Matrix : public Adafruit_GFX
+{
+public:
+  // Constructor (provides same default pin/type values as Adafruit_NeoPixel)
+  NeoPixel_Matrix(int16_t w, int16_t h, uint8_t p=6, uint8_t t=NEO_GRB + NEO_KHZ800);
+
+  // Adafruit_GFX methods
+  void drawPixel(int16_t x, int16_t y, uint16_t color);
+  void fillScreen(uint16_t color);
+
+  // Apply changes
+  void display();
+
+  // Create a 16-bit color from unpacked 24-bit RGB
+  uint16_t Color(uint8_t r, uint8_t g, uint8_t b);
+
+  // Map a 16-bit color for Adafruit_GFX into a native packed 24-bit color
+  uint32_t NativeColor(uint16_t color);
+
+protected:
+  // actual pixels
+  Adafruit_NeoPixel pixels;
+};
+
+#endif // NEOPIXEL_MATRIX_H

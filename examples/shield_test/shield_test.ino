@@ -1,0 +1,84 @@
+#include <Adafruit_GFX.h>
+#include <Adafruit_NeoPixel.h>
+#include <NeoPixel_Matrix.h>
+
+
+// Adafruit NeoPixel Shield uses default pin / type
+NeoPixel_Matrix shield = NeoPixel_Matrix(8, 5);
+
+
+void setup()
+{
+  // set normal size font
+  shield.setTextSize(1);
+  // set text color to 1/4 white on black
+  shield.setTextColor(shield.Color(64, 64, 64), 0);
+  // turn of text wrapping
+  shield.setTextWrap(false);
+  // Initialize all pixels to 'off'
+  shield.fillScreen(0);
+  shield.display();
+}
+
+
+void marquee(NeoPixel_Matrix &m, const char *s, uint16_t ms)
+{
+  int16_t width = 0;
+
+  // calculate printed width
+  for (const char *c = s; *c; ++c)
+  {
+    width += 6;
+  }
+
+  // clear screen
+  m.fillScreen(0);
+
+  // scroll message
+  for (int16_t x = m.width(); x >= -width; --x)
+  {
+    m.setCursor(x, 0);
+    m.print(s);
+    m.display();
+    delay(ms);
+  }
+}
+
+
+void loop()
+{
+  // rotate shield 90 deg CCW to display one character
+  shield.setRotation(1);
+  // display message
+  marquee(shield, "Hello, world!", 100);
+  delay(500);
+
+  // fill red
+  shield.fillScreen(shield.Color(255,0,0));
+  shield.display();
+  delay(500);
+  // fill green
+  shield.fillScreen(shield.Color(0,255,0));
+  shield.display();
+  delay(500);
+  // fill blue
+  shield.fillScreen(shield.Color(0,0,255));
+  shield.display();
+  delay(500);
+  // fill black
+  shield.fillScreen(shield.Color(0,0,0));
+  shield.display();
+  delay(500);
+
+  for (uint8_t rotation = 0; rotation < 4; ++rotation)
+  {
+    int16_t min_xy = min(shield.width(), shield.height());
+    shield.setRotation(rotation);
+    shield.fillScreen(0);
+    shield.fillTriangle(0, 0, shield.width()-1, shield.height()-1, 0, shield.height()-1, shield.Color(64,0,0));
+    shield.drawCircle(min_xy >> 1, min_xy >> 1, min_xy >> 1, shield.Color(0,64,0));
+    shield.drawRect(shield.width()>>1, shield.height()>>1, 3, 3, shield.Color(0,0,64));
+    shield.display();
+    delay(1000);
+  }
+}
