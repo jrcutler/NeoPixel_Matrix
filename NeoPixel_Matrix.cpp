@@ -27,9 +27,8 @@ static inline uint8_t downsample(uint8_t v, uint8_t bits)
 
 
 NeoPixel_Matrix::NeoPixel_Matrix(int16_t w, int16_t h, uint8_t p, uint8_t t):
-    pixels(w * h, p, t)
+    Adafruit_GFX(w, h), pixels(w * h, p, t)
 {
-  Adafruit_GFX::constructor(w, h);
   pixels.begin();
 }
 
