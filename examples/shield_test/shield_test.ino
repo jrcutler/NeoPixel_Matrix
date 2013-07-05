@@ -1,5 +1,6 @@
 /*
  * This file is part of the NeoPixel_Matrix library.
+ * Copyright 2013 Justin R. Cutler <justin.r.cutler@gmail.com>
  *
  * NeoPixel_Matrix is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as published by the
