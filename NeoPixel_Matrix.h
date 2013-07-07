@@ -35,7 +35,7 @@ public:
   void display();
 
   // Create a 16-bit color from unpacked 24-bit RGB
-  uint16_t Color(uint8_t r, uint8_t g, uint8_t b);
+  static uint16_t Color(uint8_t r, uint8_t g, uint8_t b);
 
   // Map a 16-bit color for Adafruit_GFX into a native packed 24-bit color
   uint32_t NativeColor(uint16_t color);
