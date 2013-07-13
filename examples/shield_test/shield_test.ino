@@ -28,8 +28,8 @@ void setup()
 {
   // set normal size font
   shield.setTextSize(1);
-  // set text color to 1/4 white on black
-  shield.setTextColor(shield.Color(64, 64, 64), 0);
+  // set text color to 1/8 white on black
+  shield.setTextColor(shield.Color(32, 32, 32), 0);
   // turn of text wrapping
   shield.setTextWrap(false);
   // Initialize all pixels to 'off'
