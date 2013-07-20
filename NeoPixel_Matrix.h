@@ -43,6 +43,11 @@ public:
   uint32_t NativeColor(uint16_t color);
 
 protected:
+  // Test if coordinates are valid
+  boolean isValid(int16_t x, int16_t y) const;
+  // Convert x,y coordinates to pixel index
+  uint16_t mapPixel(int16_t x, int16_t y) const;
+
   // actual pixels
   Adafruit_NeoPixel pixels;
 };

@@ -78,13 +78,14 @@ void NeoPixel_Matrix::display()
 }
 
 
-void NeoPixel_Matrix::drawPixel(int16_t x, int16_t y, uint16_t color)
+boolean NeoPixel_Matrix::isValid(int16_t x, int16_t y) const
 {
-  if ((x < 0) || (x >= width()) || (y < 0) || (y >= height()))
-  {
-    return;
-  }
+  return !((x < 0) || (x >= width()) || (y < 0) || (y >= height()));
+}
 
+
+uint16_t NeoPixel_Matrix::mapPixel(int16_t x, int16_t y) const
+{
   // check rotation, move pixel around if necessary
   switch (getRotation())
   {
@@ -104,7 +105,18 @@ void NeoPixel_Matrix::drawPixel(int16_t x, int16_t y, uint16_t color)
       break;
   }
 
-  pixels.setPixelColor(y * WIDTH + x, NativeColor(color));
+  return y * WIDTH + x;
+}
+
+
+void NeoPixel_Matrix::drawPixel(int16_t x, int16_t y, uint16_t color)
+{
+  if (!isValid(x, y))
+  {
+    return;
+  }
+
+  pixels.setPixelColor(mapPixel(x, y), NativeColor(color));
 }
 
 
