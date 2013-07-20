@@ -39,6 +39,16 @@ uint16_t NeoPixel_Matrix::Color(uint8_t r, uint8_t g, uint8_t b)
 }
 
 
+uint16_t NeoPixel_Matrix::Color(uint32_t rgb)
+{
+  uint8_t r, g, b;
+  r = (rgb >> 16) & 0xff;
+  g = (rgb >> 8)  & 0xff;
+  b = (rgb >> 0)  & 0xff;
+  return Color(r, g, b);
+}
+
+
 uint32_t NeoPixel_Matrix::NativeColor(uint16_t color)
 {
   uint8_t r, g, b;
