@@ -109,6 +109,17 @@ uint16_t NeoPixel_Matrix::mapPixel(int16_t x, int16_t y) const
 }
 
 
+uint16_t NeoPixel_Matrix::getPixel(int16_t x, int16_t y) const
+{
+  if (!isValid(x, y))
+  {
+    return 0;
+  }
+
+  return Color(pixels.getPixelColor(mapPixel(x, y)));
+}
+
+
 void NeoPixel_Matrix::drawPixel(int16_t x, int16_t y, uint16_t color)
 {
   if (!isValid(x, y))

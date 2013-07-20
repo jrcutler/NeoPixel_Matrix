@@ -34,6 +34,9 @@ public:
   // Apply changes
   void display();
 
+  // Get pixel color
+  uint16_t getPixel(int16_t x, int16_t y) const;
+
   // Create a 16-bit color from packed 24-bit RGB
   static uint16_t Color(uint32_t rgb);
   // Create a 16-bit color from unpacked 24-bit RGB
